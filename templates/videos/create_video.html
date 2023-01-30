@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if messages  %}
+    {% for message in messages %}
+        <div role="alert">
+            <p class="message_error">{{ message }}</p>
+        </div>
+    {% endfor %}
+
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data" class="upload_form">
+        {% csrf_token %}
+        <textarea name="title" placeholder="Заголовок" rows="2" cols="40" class="video_info"></textarea>
+        <br>
+        <textarea name="description" placeholder="Описание" rows="5" cols="55" class="video_info"></textarea>
+        <br>
+        <br>
+
+        <label for="file_video" class="btn_video">Выберете задачу</label>
+        <input type="file" name="file" id="file_video" style="visibility:hidden;">
+
+
+        <label for="file_image" class="btn_img">Выберете значок</label>
+        <input type="file" name="image" id="file_image" style="visibility:hidden;">
+
+        <label for="upload" class="btn_upload">Загрузить задачу</label>
+        <input type="submit" value="Загрузить Видео" id="upload" style="visibility:hidden;">
+    </form>
+
+
+
+{% endblock %}

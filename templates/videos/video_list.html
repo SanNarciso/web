@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+<a href="{% url 'create_video' %}"><h2 class="title_video_create">Добавить свою задачу</h2></a>
+
+
+<hr>
+
+{% if videos.all %}
+{% for item in videos.all %}
+        <a href="{% url 'video_detail' item.id %}"><div class="image_frame">
+            <img src="{{ item.image.url }}" alt="" class="Vimage">
+            <p class="video_title">{{item.title|slice:"48" }}</p>
+            <p class="video_date">{{ item.create_date }}</p>
+        </div></a>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

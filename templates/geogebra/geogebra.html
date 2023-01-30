@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<script src="https://www.geogebra.org/apps/deployggb.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+{% block content %}
+    <div id="ggb-element"></div>
+    <script>
+        const params = {"appName": "graphing", "width": 800, "height": 600, "showToolBar": true, "showAlgebraInput": true, "showMenuBar": true };
+         const applet = new GGBApplet(params, true);
+        window.addEventListener("load", function() {
+            applet.inject('ggb-element');
+        });
+    </script>
+{% endblock %}
+

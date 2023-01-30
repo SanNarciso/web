@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1 class="title">Задать вопрос</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.title }}<br>
+    <br>
+        {{ form.task }}<br>
+        {% if user.is_authenticated %}
+            <a href="{% url 'home' %}"><button class="button1" type="submit">Создать</button></a>
+        {% else %}
+            <a class="reg_to_comment" href="{% url 'login' %}">Чтобы задать вопрос, необходимо авторизоваться</a>
+    {% endif %}
+        <span>{{ error }}</span>
+    </form>
+
+
+{% endblock %}

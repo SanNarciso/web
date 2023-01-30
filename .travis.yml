@@ -1,0 +1,21 @@
+language: python
+
+python:
+  - 3.8
+  - 3.9
+  - 3.10
+
+services: mysql
+
+env:
+  - DJANGO=4.0.4
+
+install:
+  - pip install -q Django==$DJANGO --use-mirrors
+  - pip install pep8 --use-mirrors
+  - pip install mysql-python --use-mirrors
+
+before_script:
+  - python manage.py syncdb --noinput
+script:
+  - python manage.py test

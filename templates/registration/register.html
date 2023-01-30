@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h1 align="center"><font color="#484f18">Регистрация</font></h1>
+
+    {% if form.errors %}
+        <p align="center">Пожалуйста, правильно заполните необходимые поля</p>
+    {% endif %}
+
+     <form action="{% url 'register' %}" method="post">
+     <h4 class="paddi">Ваше имя: {{ form.username  }}</h4><br>
+     <h4 class="padddi">Почта: {{ form.email }}</h4><br>
+     <h4 class="ppaddi">Пароль: {{ form.password1 }}</h4><br>
+     <h4 class="last_paddi">Повторите пароль: {{ form.password2 }}</h4><br>
+    {% csrf_token %}
+     <p></p>
+     <div align="center">
+        <button type="submit" class="double-border-button">Зарегистрироваться</button>
+     </div>
+    </form>
+
+{% endblock %}

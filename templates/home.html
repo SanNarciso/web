@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+
+
+<h2 class="question_title">Список всех вопросов</h2>
+    {% if tasks %}
+        {% for task in tasks|dictsortreversed:'create_date' %}
+            <div class="question_list">
+                    <a class="text-href" href="{% url 'detail' task.id %}">
+                        <div>
+                            <p class="question_meta">{{ task.author }} | {{ task.create_date.date }} </p>
+                            <h3 class="question_text">{{ task.title | truncatechars:100}}</h3>
+                        </div>
+                    </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Здесь пока что нет вопросов</p>
+    {% endif %}
+
+    <hr>
+
+{% endblock %}
+

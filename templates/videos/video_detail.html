@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<div class="problemPNGFrame">
+    <img src="{{ video.file.url }}" alt="" class="problemPNG">
+</div>
+
+<br>
+<hr>
+<div class="description">
+    <h3 id="description_video">Описание</h3>
+<div id="comments">
+    <div id="comment_text">{{ video.description }}</div>
+</div>
+<hr>
+
+<p>Комментарии ({{ video.comments_video.all.count }})</p>
+    <hr>
+
+<form action="" id="add_form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+</form>
+
+{% if user.is_authenticated %}
+            <button class="button" form="add_form" type="submit">Добавить</button>
+        {% else %}
+            <a href="{% url 'login' %}" id="comment_rule">Чтобы оставить комментарий, необходимо авторизоваться</a>
+{% endif %}
+
+
+<hr>
+
+    <ul>
+        {% if video.comments_video.all %}
+        {% for item in video.comments_video.all|dictsortreversed:'create_date' %}
+            <li id="comments">
+                <div id="comment_text">{{ item.create_date }} </div>
+                <div id="author_title">Пользователь: <b id="author">{{ item.author }}</b></div>
+                <hr>
+                <div id="comment_text"> {{ item.text }} </div>
+            </li>
+        {% endfor %}
+        {% else %}
+            <p>Нет комментариев</p>
+        {% endif %}
+    </ul>
+
+<hr>
+
+
+{% endblock %}

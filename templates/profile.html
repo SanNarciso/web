@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h2 id="prof_first">{% block title %}Ваш профиль{% endblock %}</h2>
+<hr>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+
+
+<div class="nice">
+    <h3 id="prof_second" color="#5F11C1">Имя пользователя: {{ user.username }}</h3>
+    <h3 ID="prof_third">Адрес электронной почты: {{ user.email }}</h3>
+
+</div>
+
+{% else %}
+<h3 id="prof_third">Сперва войдите в свой профиль</h3>
+
+<h3></h3>
+
+<script src="https://www.geogebra.org/apps/deployggb.js"></script>
+    <div id="ggb-element"></div>
+
+{% endif %}
+
+{% endblock %}
